@@ -57,10 +57,12 @@
 
     var update = function(el, data) {
         var link = el.querySelector('.file-link'),
+            uri  = el.querySelector('.file-uri-value'),
             path = el.querySelector('.file-path'),
             img  = el.querySelector('.file-img')
 
         link.setAttribute('href', data.url)
+        uri.value = data.url
         path.value = data.filename
         img.src = data.url
 

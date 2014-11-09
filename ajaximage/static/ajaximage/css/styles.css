@@ -18,8 +18,13 @@
   opacity: 0.8;
 }
 
+.ajaximage .file-uri-value {
+  width: 300px;
+}
+
 .ajaximage .progress,
 .ajaximage .file-link,
+.ajaximage .file-uri,
 .ajaximage .file-remove,
 .ajaximage .file-input {
   display: none;
@@ -27,6 +32,7 @@
 
 .ajaximage.progress-active .progress,
 .ajaximage.img-active .file-link,
+.ajaximage.img-active .file-uri,
 .ajaximage.img-active .file-remove,
 .ajaximage.form-active .file-input {
   display: block;
