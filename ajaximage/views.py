@@ -31,10 +31,13 @@ def ajaximage(request, upload_to=None, max_width=None, max_height=None, crop=Non
             return HttpResponse(data, content_type="application/json", status=403)
 
         file_ = resize(file_, max_width, max_height, crop)
-        file_name, extension = os.path.splitext(file_.name)
-        safe_name = '{0}{1}'.format(FILENAME_NORMALIZER(file_name), extension)
-
-        name = os.path.join(upload_to or UPLOAD_PATH, safe_name)
+        if callable(upload_to):
+            # upload_to(instance, filename)
+            name = upload_to(None, file_.name)
+        else:
+            file_name, extension = os.path.splitext(file_.name)
+            safe_name = '{0}{1}'.format(FILENAME_NORMALIZER(file_name), extension)
+            name = os.path.join(upload_to or UPLOAD_PATH, safe_name)
         path = default_storage.save(name, file_)
         url = default_storage.url(path)
 
